@@ -227,7 +227,7 @@ code {
 
 }
 .blur{
-  filter: blur(2px);
+  filter: blur(6px);
   pointer-events: none;
   user-select: none;
 }
