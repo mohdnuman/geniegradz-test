@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { addMcqMarks } from "../actions/marks";
+import { markMcqAnsweredCorrect ,markMcqAnsweredIncorrect} from "../actions/mcqs";
+import { connect } from "react-redux";
+
 
 class McqQuestion extends Component {
 
@@ -20,8 +23,9 @@ class McqQuestion extends Component {
 
   formSubmit=(event)=> {
     event.preventDefault();
-    console.log(this.state.selectedOption);
+    // console.log(this.state.selectedOption);
     if(this.props.mcq.answer===this.state.selectedOption){
+    this.props.dispatch(markMcqAnsweredCorrect(this.props.mcq))
       this.props.dispatch(addMcqMarks());
       this.setState({
         message:'correct',
@@ -29,6 +33,8 @@ class McqQuestion extends Component {
       })
     }
     else{
+    this.props.dispatch(markMcqAnsweredIncorrect(this.props.mcq))
+
       this.setState({
         message:'wrong',
         answered:true
@@ -59,16 +65,22 @@ class McqQuestion extends Component {
               {option}
             </div>
           ))}
-          {!this.state.answered && <button className="submit-button" onClick={this.handleSubmit}>
+          {!this.state.answered &&!this.props.mcq.answered&& <button className="submit-button" onClick={this.handleSubmit}>
             SUBMIT
           </button>}
-          {this.state.message === "correct" && <span className="correct-text">Correct answer{' '}<img src="https://cdn-icons.flaticon.com/png/512/1634/premium/1634264.png?token=exp=1647184527~hmac=b3192f9ba636df0a8fc51fb9b8f0b0a5" className="tick"/> </span>}
-        {this.state.message === "wrong" && <span className="wrong-text">Wrong answer{' '}<img src="https://cdn-icons-png.flaticon.com/512/594/594598.png" className="cross"/>  </span>}
+          {this.props.mcq.answered&&this.props.mcq.correct&&<span className="correct-text">Correct answer{' '}<img src="https://cdn-icons.flaticon.com/png/512/1634/premium/1634264.png?token=exp=1647184527~hmac=b3192f9ba636df0a8fc51fb9b8f0b0a5" className="tick"/> </span>}
+          {this.props.mcq.answered&&!this.props.mcq.correct&&<span className="wrong-text">Wrong answer{' '}<img src="https://cdn-icons-png.flaticon.com/512/594/594598.png" className="cross"/> </span>}
+
 
         </form>
       </div>
     );
   }
 }
+function mapstatetoprops(state) {
+  return {
+    mcqs:state.mcqs
+  };
+}
 
-export default McqQuestion;
+export default connect(mapstatetoprops)(McqQuestion);

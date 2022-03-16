@@ -5,9 +5,7 @@ import { connect } from "react-redux";
 
 
 class Fill extends Component {
-    componentDidMount() {
-        this.props.dispatch(fetchFills());
-    }
+ 
     
     render() {
         if(this.props.fills===undefined){
@@ -15,7 +13,7 @@ class Fill extends Component {
         }
         return (
             <div className='questions-window'>
-                {this.props.fills.map((fill) => (
+                {this.props.fills.questions.map((fill) => (
                 <FillQuestion fill={fill} key={fill._id} dispatch={this.props.dispatch} />
               ))}
             </div>
@@ -24,7 +22,7 @@ class Fill extends Component {
 }
 function mapstatetoprops(state) {
     return {
-      fills: state.fills
+      // fills: state.fills
     };
   }
   

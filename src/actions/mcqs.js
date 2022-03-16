@@ -1,5 +1,5 @@
 import { APIUrls } from '../helpers/urls';
-import {UPDATE_MCQS} from './actionTypes';
+import {UPDATE_MCQS,MARK_MCQ_ANSWERED_CORRECT,MARK_MCQ_ANSWERED_INCORRECT} from './actionTypes';
 // import  getFormBody  from '../helpers/utils';
 
 export function fetchMcqs(){
@@ -21,4 +21,18 @@ export function updateMcqs(mcqs){
         mcqs,
     };
 } 
+
+export function markMcqAnsweredCorrect(mcq){
+    return{
+        type:MARK_MCQ_ANSWERED_CORRECT,
+        mcq:mcq
+    }
+}
+export function markMcqAnsweredIncorrect(mcq){
+    return{
+        type:MARK_MCQ_ANSWERED_INCORRECT,
+        mcq:mcq
+    }
+}
+
 

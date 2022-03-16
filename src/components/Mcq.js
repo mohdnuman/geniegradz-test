@@ -5,9 +5,6 @@ import { connect } from "react-redux";
 
 
 class Mcq extends Component {
-    componentDidMount() {
-        this.props.dispatch(fetchMcqs());
-    }
     
     render() {
         if(this.props.mcqs===undefined){
@@ -15,8 +12,8 @@ class Mcq extends Component {
         }
         return (
             <div className='questions-window'>
-                {this.props.mcqs.map((mcq) => (
-                <McqQuestion mcq={mcq} key={mcq._id} dispatch={this.props.dispatch} className={mcq.answered&&'answered'}/>
+                {this.props.mcqs.questions.map((mcq) => (
+                <McqQuestion mcq={mcq} key={mcq._id} dispatch={this.props.dispatch}/>
               ))}
             </div>
         );
@@ -24,7 +21,6 @@ class Mcq extends Component {
 }
 function mapstatetoprops(state) {
     return {
-      mcqs: state.mcqs
     };
   }
   

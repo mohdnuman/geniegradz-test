@@ -4,10 +4,7 @@ import { connect } from "react-redux";
 
 
 class Codepanel extends Component {
-  componentDidMount() {
-      this.props.dispatch(fetchCode());
-    }
-  
+
     render() {
         if(this.props.code===undefined){
             return<div>Loading</div>

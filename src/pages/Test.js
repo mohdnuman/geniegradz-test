@@ -7,6 +7,9 @@ import Fill from "../components/Fill";
 import CodeEditor from "../components/CodeEditor";
 import CodePanel from "../components/Codepanel";
 import { connect } from "react-redux";
+import { fetchMcqs } from "../actions/mcqs";
+import { fetchFills } from "../actions/fills";
+import { fetchCode } from "../actions/code";
 
 class Test extends Component {
   constructor(props) {
@@ -82,6 +85,13 @@ class Test extends Component {
       activeTab: "mcq",
     });
   };
+
+  componentDidMount() {
+    this.props.dispatch(fetchMcqs());
+    this.props.dispatch(fetchFills());
+    this.props.dispatch(fetchCode());
+  }
+  
   render() {
     return (
       <Box sx={{ flexGrow: 1 }}>
@@ -112,12 +122,12 @@ class Test extends Component {
             </p>
           </Grid>
           <Grid item xs={10} style={{ height: "102vh" }}className={!this.state.started&& 'blur'} >
-            <span className={this.state.finished&&'finished'}>{this.state.activeTab === "mcq" && <Mcq />}</span>
-            <span className={this.state.finished&&'finished'}>{this.state.activeTab === "fill" && <Fill />}</span>
+            <span className={this.state.finished&&'finished'}>{this.state.activeTab === "mcq" && <Mcq mcqs={this.props.mcqs}/>}</span>
+            <span className={this.state.finished&&'finished'}>{this.state.activeTab === "fill" && <Fill fills={this.props.fills}/>}</span>
             <span className={this.state.finished&&'finished'}>{this.state.activeTab === "code" && (
               <Grid container spacing={2}>
                 <Grid item xs={2.5}>
-                  <CodePanel />
+                  <CodePanel code={this.props.code}/>
                 </Grid>
                 <Grid item xs={9.5}>
                   <CodeEditor />
@@ -151,6 +161,9 @@ class Test extends Component {
 function mapstatetoprops(state) {
   return {
     marks: state.marks,
+    mcqs:state.mcqs,
+    fills:state.fills,
+    code:state.code
   };
 }
 
