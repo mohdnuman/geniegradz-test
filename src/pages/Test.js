@@ -106,7 +106,7 @@ class Test extends Component {
             item
             xs={2}
             style={{ backgroundColor: "black", height: "102vh",paddingRight:'10px'}}
-            className={!this.state.started||this.state.finished&& 'blur'}
+            className={(!this.state.started||this.state.finished)&& 'blur'}
           >
             <span className="test-heading">Test</span>
             <p className="side-option" onClick={this.handleMcq}>
@@ -127,7 +127,7 @@ class Test extends Component {
             {this.state.finished&&<div className="side-time-option time">Test Finished <span className="score">Score-{this.props.marks.mcqMarks+this.props.marks.fillMarks+this.props.marks.codeMarks}/30</span></div>}
             </p>
           </Grid>
-          <Grid item xs={10} style={{ height: "102vh" }}className={!this.state.started||this.state.finished &&  'blur'} >
+          <Grid item xs={10} style={{ height: "102vh" }}className={(!this.state.started||this.state.finished) &&  'blur'} >
             <span className={this.state.finished&&'finished'}>{this.state.activeTab === "mcq" && <Mcq mcqs={this.props.mcqs}/>}</span>
             <span className={this.state.finished&&'finished'}>{this.state.activeTab === "fill" && <Fill fills={this.props.fills}/>}</span>
             <span className={this.state.finished&&'finished'}>{this.state.activeTab === "code" && (
