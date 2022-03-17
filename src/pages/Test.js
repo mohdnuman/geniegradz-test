@@ -86,6 +86,11 @@ class Test extends Component {
     });
   };
 
+  handleEnd=()=>{
+      clearInterval(this.timer);
+      this.setState({finished:true});
+  }
+
   componentDidMount() {
     this.props.dispatch(fetchMcqs());
     this.props.dispatch(fetchFills());
@@ -116,6 +121,7 @@ class Test extends Component {
               Code
               <span className="score">{this.props.marks.codeMarks}/10</span>
             </p>
+            <button onClick={this.handleEnd}>End Test</button>
             <p>
             {!this.state.finished&&<div className="side-time-option time">Time Left-{this.state.time.m} mins  {this.state.time.s} seconds </div>}
             {this.state.finished&&<div className="side-time-option time">Test Finished <span className="score">Score-{this.props.marks.mcqMarks+this.props.marks.fillMarks+this.props.marks.codeMarks}/30</span></div>}
@@ -151,6 +157,20 @@ class Test extends Component {
             </p>
             <button onClick={this.handleStart} className="start-button">
               Start Test
+            </button>
+          </div>
+        )}
+        {this.state.finished && (
+          <div className="popup">
+            <span className="start-test-text">Test Ended</span>
+            <p>
+              MCQ score-{this.props.marks.mcqMarks}/10 <br/>
+              Fill in the blanks score-{this.props.marks.fillMarks}/10 <br/>
+              Code Score-{this.props.marks.codeMarks}/10 <br/>
+              Total Score-{this.props.marks.mcqMarks+this.props.marks.fillMarks+this.props.marks.codeMarks}/30 <br/>
+            </p>
+            <button className="start-button">
+              Exit
             </button>
           </div>
         )}
