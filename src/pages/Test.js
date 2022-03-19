@@ -20,6 +20,7 @@ class Test extends Component {
       time: {},
       seconds: 2700,
       finished: false,
+      confirmFinished:undefined
     };
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
@@ -61,6 +62,7 @@ class Test extends Component {
     if (seconds == 0) {
       clearInterval(this.timer);
       this.setState({ finished: true });
+      
     }
   }
   handleStart = () => {
@@ -91,6 +93,18 @@ class Test extends Component {
     clearInterval(this.timer);
     this.setState({ finished: true });
   };
+
+  handleConfirm=()=>{
+    this.setState({ confirmFinished: true });
+  }
+
+  handleNo=()=>{
+    this.setState({
+      confirmFinished:undefined
+    })
+  }
+
+
 
   componentDidMount() {
     this.props.dispatch(fetchMcqs());
@@ -130,7 +144,7 @@ class Test extends Component {
               {!this.state.finished && (
                 <div className="side-time-option time">
                   Time Left-{this.state.time.m} mins {this.state.time.s} seconds{" "}
-                  <button onClick={this.handleEnd} className="end-button">
+                  <button onClick={this.handleConfirm} className="end-button">
               End Test
             </button>
                 </div>
@@ -234,6 +248,12 @@ class Test extends Component {
             <button className="start-button">Exit</button>
           </div>
         )}
+        {!this.state.finished&&this.state.confirmFinished&&<div className="confirm-popup">
+            <span className="confirm-end-text">Are You Sure You Want To End the Test?</span>
+            <button onClick={this.handleEnd} className="yes-button">Yes,End the test</button>
+            <button className="no-button" onClick={this.handleNo}>No, I want to continue</button>
+
+            </div>}
       </Box>
     );
   }

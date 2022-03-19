@@ -158,7 +158,7 @@ code {
   border-radius: 10px;
   font-weight: 500;
   position: relative;
-  bottom:-42vh;
+  bottom:-40vh;
 }
 
 .score{
@@ -219,13 +219,13 @@ code {
   
 }
 .start-button{
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-top:5vh;
   background-color: black;
   color: white;
   border: 2px solid white;
   border-radius:20px ;
-  padding: 5px 15px 5px 15px;
+  padding: 5px 30px 5px 30px;
   transition: 2s ease-in-out;
 }
 .start-button:hover{
@@ -255,11 +255,13 @@ code {
   border-radius: 10px;
   padding: 5px;
   display: block;
+  width: 13vw;
+  margin-top: 10px;
   /* position: relative; */
   /* left: 8vw; */
   /* display: inline-block; */
-  position: relative;
-  left: 8vw;
+  /* position: relative; */
+  /* left: 8vw; */
 }
 .end-button:hover{
   cursor: pointer;
@@ -279,4 +281,44 @@ table{
 
 .bold{
   font-weight: 700;
+}
+.confirm-end-text{
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 3vh;
+}
+.confirm-popup{
+  position:fixed;
+  top:40%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  width: 600px;
+  height: 20vh;
+  padding: 30px;
+  box-shadow: 0 5px 30px rgba(0,0,0,.30);
+  background-color: #fff;
+}
+.yes-button{
+  background-color: red;
+  border: 0px;
+  padding: 5px;
+  width: 10vw;
+  border-radius: 15px;
+  margin: 10px;
+  color: white;
+}
+.no-button{
+  background-color: black;
+  border: 0px;
+  padding: 5px;
+  width: 12vw;
+  border-radius: 15px;
+  margin: 10px;
+  color: white;
+}
+
+.yes-button,.no-button:hover{
+  cursor: pointer;
 }
