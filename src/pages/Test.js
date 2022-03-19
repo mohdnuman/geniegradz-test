@@ -125,13 +125,14 @@ class Test extends Component {
               Code
               <span className="score">{this.props.marks.codeMarks}/10</span>
             </p>
-            <button onClick={this.handleEnd} className="end-button">
-              End Test
-            </button>
+            
             <p>
               {!this.state.finished && (
                 <div className="side-time-option time">
                   Time Left-{this.state.time.m} mins {this.state.time.s} seconds{" "}
+                  <button onClick={this.handleEnd} className="end-button">
+              End Test
+            </button>
                 </div>
               )}
               {this.state.finished && (
