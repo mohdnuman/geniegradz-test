@@ -260,3 +260,19 @@ code {
 .end-button:hover{
   cursor: pointer;
 }
+td{
+  width: 50%;
+  text-align: center;
+  height: 4vh;
+}
+table{
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+.side-name{
+  text-align: left;
+}
+
+.bold{
+  font-weight: 700;
+}
