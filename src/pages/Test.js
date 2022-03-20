@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import { fetchMcqs } from "../actions/mcqs";
 import { fetchFills } from "../actions/fills";
 import { fetchCode } from "../actions/code";
+import screenfull from 'screenfull';
 
 class Test extends Component {
   constructor(props) {
@@ -72,6 +73,7 @@ class Test extends Component {
     let timeLeftVar = this.secondsToTime(this.state.seconds);
     this.startTimer();
     this.setState({ time: timeLeftVar });
+    screenfull.request();
   };
   handleCode = () => {
     this.setState({
@@ -104,6 +106,9 @@ class Test extends Component {
     })
   }
 
+  handleExit=()=>{
+    screenfull.toggle();
+  }
 
 
   componentDidMount() {
@@ -113,6 +118,7 @@ class Test extends Component {
   }
 
   render() {
+  
     return (
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
@@ -140,8 +146,17 @@ class Test extends Component {
               <span className="score">{this.props.marks.codeMarks}/10</span>
             </p>
             
+            
             <p>
-              {!this.state.finished && (
+            {!this.state.finished && screenfull.isFullscreen&&(
+                <div className="side-time-option timee">
+                  Time Left-{this.state.time.m} mins {this.state.time.s} seconds{" "}
+                  <button onClick={this.handleConfirm} className="end-button">
+              End Test
+            </button>
+                </div>
+              )}
+              {!this.state.finished && !screenfull.isFullscreen&& (
                 <div className="side-time-option time">
                   Time Left-{this.state.time.m} mins {this.state.time.s} seconds{" "}
                   <button onClick={this.handleConfirm} className="end-button">
@@ -149,6 +164,8 @@ class Test extends Component {
             </button>
                 </div>
               )}
+            
+
               {this.state.finished && (
                 <div className="side-time-option time">
                   Test Finished{" "}
@@ -245,7 +262,7 @@ class Test extends Component {
               Code Score-{this.props.marks.codeMarks}/10 <br/>
               Total Score-{this.props.marks.mcqMarks+this.props.marks.fillMarks+this.props.marks.codeMarks}/30 <br/> */}
             </table>
-            <button className="start-button">Exit</button>
+            <button className="start-button" onClick={this.handleExit}>Exit</button>
           </div>
         )}
         {!this.state.finished&&this.state.confirmFinished&&<div className="confirm-popup">

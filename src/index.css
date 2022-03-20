@@ -159,6 +159,17 @@ code {
   font-weight: 500;
   position: relative;
   bottom:-40vh;
+  /* color: red; */
+}
+
+.timee{
+  color: white;
+  padding: 15px;
+  border-top: 2px solid white;
+  border-radius: 10px;
+  font-weight: 500;
+  position: relative;
+  bottom:-50vh;
 }
 
 .score{
