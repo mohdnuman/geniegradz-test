@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Mcq from "../components/Mcq";
 import Fill from "../components/Fill";
@@ -46,7 +45,7 @@ class Test extends Component {
   }
 
   startTimer() {
-    if (this.timer == 0 && this.state.seconds > 0) {
+    if (this.timer === 0 && this.state.seconds > 0) {
       this.timer = setInterval(this.countDown, 1000);
     }
   }
@@ -60,7 +59,7 @@ class Test extends Component {
     });
 
     // Check if we're at zero.
-    if (seconds == 0) {
+    if (seconds === 0) {
       clearInterval(this.timer);
       this.setState({ finished: true });
       
@@ -73,7 +72,7 @@ class Test extends Component {
     let timeLeftVar = this.secondsToTime(this.state.seconds);
     this.startTimer();
     this.setState({ time: timeLeftVar });
-    screenfull.request();
+    // screenfull.request();
   };
   handleCode = () => {
     this.setState({
@@ -106,9 +105,9 @@ class Test extends Component {
     })
   }
 
-  handleExit=()=>{
-    screenfull.toggle();
-  }
+  // handleExit=()=>{
+  //   screenfull.toggle();
+  // }
 
 
   componentDidMount() {
